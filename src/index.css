@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground; }
+}
+
+.prose-report h1 { @apply text-2xl font-semibold mt-6 mb-3; }
+.prose-report h2 { @apply text-xl font-semibold mt-6 mb-2 border-b pb-1; }
+.prose-report h3 { @apply text-lg font-medium mt-4 mb-2; }
+.prose-report p { @apply my-2 leading-relaxed; }
+.prose-report ul { @apply list-disc pl-6 my-2; }
+.prose-report ol { @apply list-decimal pl-6 my-2; }
+.prose-report li { @apply my-0.5; }
+.prose-report code { @apply rounded bg-muted px-1 py-0.5 text-[0.85em]; }
+.prose-report pre { @apply my-3 overflow-x-auto rounded-md bg-muted p-3 text-xs; }
+.prose-report pre code { @apply bg-transparent p-0; }
+.prose-report table { @apply my-3 w-full text-sm border-collapse; }
+.prose-report th, .prose-report td { @apply border px-2 py-1 align-top; }
+.prose-report th { @apply bg-muted text-left font-medium; }
+.prose-report blockquote { @apply border-l-4 pl-3 italic text-muted-foreground; }
+.prose-report a { @apply underline; }
+.prose-report .cite { @apply rounded bg-secondary px-1 text-[0.8em] font-mono; }
+
+/* Keep the original desktop workspace; stack its panels on small screens. */
+@media (max-width: 700px) {
+  .graph-workspace { flex-direction: column; overflow: auto; }
+  .graph-filters { width: 100%; max-height: 260px; border-right: 0; border-bottom: 1px solid var(--border); }
+  .graph-canvas { flex: none; min-height: 380px; height: 55vh; }
+  .graph-inspector { width: 100%; min-height: 400px; flex-shrink: 0; border-left: 0; border-top: 1px solid var(--border); }
+}
